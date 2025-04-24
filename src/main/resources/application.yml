@@ -1,57 +1,5 @@
-server:
-  port: 0
-
 spring:
-
   application:
     name: user-service
-
-  cloud:
-    config:
-      enabled: false
-
-  sql:
-    init:
-      mode: always
-
-  datasource:
-    url: jdbc:h2:mem:userdb
-    driverClassName: org.h2.Driver
-    username: sa
-    password:
-  jpa:
-    defer-datasource-initialization: true
-    show-sql: true
-    hibernate:
-      ddl-auto: create
-
-  h2:
-    console:
-      enabled: true
-
-springdoc:
-  api-docs:
-    path: /v3/api-docs
-  swagger-ui:
-    path: /swagger-ui.html
-    url: /v3/api-docs
-    disable-swagger-default-url: true
-
-
-jwt:
-  secret: c2VjcmV0LW15LWtleS1zaG91bGQtYmUtMzItYnl0ZXMtYmFzZTY0IQ==
-
-internal:
-  token: 12345-mi-token-interno-compartido
-
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka
-
-  instance:
-    instance-id: ${spring.application.name}:${random.uuid}
-    prefer-ip-address: true
-    ip-address: 127.0.0.1
-    metadata-map:
-      port: ${server.port}
+  config:
+    import: optional:configserver:http://localhost:8888
